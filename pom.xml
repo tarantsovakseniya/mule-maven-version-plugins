@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>mule-maven-version-plugins</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-maven-version-plugins</name>
@@ -20,7 +20,7 @@
 		<connection>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</connection>
 		<url>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</url>
     	<developerConnection>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</developerConnection>
-    	<tag>mule-maven-version-plugins-1.0.0</tag>
+    	<tag>HEAD</tag>
     </scm>
 	<build>
 		<plugins>
