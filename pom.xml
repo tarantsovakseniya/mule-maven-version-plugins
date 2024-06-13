@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>mule-maven-version-plugins</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-maven-version-plugins</name>
@@ -14,9 +14,14 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.4.0-20220622</app.runtime>
-		<mule.maven.plugin.version>3.6.3</mule.maven.plugin.version>
+		<mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
 	</properties>
-
+    <scm>
+		<connection>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</connection>
+		<url>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</url>
+    	<developerConnection>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</developerConnection>
+    	<tag>mule-maven-version-plugins-1.0.0</tag>
+    </scm>
 	<build>
 		<plugins>
 			<plugin>
@@ -29,6 +34,15 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-release-plugin</artifactId>
+			  <configuration>
+			    <checkModificationExcludes>
+			        <checkModificationExclude>pom.xml</checkModificationExclude>
+			    </checkModificationExcludes>
+			  </configuration>
 			</plugin>
 			<plugin>
 			    <groupId>org.codehaus.mojo</groupId>
@@ -49,6 +63,28 @@
 			    	</execution>
 			    </executions>
 			</plugin>
+  		<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+                <execution>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <tasks>
+                            <echo>Major: ${parsedVersion.majorVersion}</echo>
+                            <echo>Minor: ${parsedVersion.minorVersion}</echo>
+                            <echo>Incremental: ${parsedVersion.incrementalVersion}</echo>
+                            <echo>Qualifier: ${parsedVersion.qualifier}</echo>
+                            <echo>BuildNumber: ${parsedVersion.buildNumber}</echo>
+                        </tasks>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 		</plugins>
 	</build>
 
