@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>mule-maven-version-plugins</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>mule-maven-version-plugins</name>
@@ -15,7 +15,6 @@
 
 		<app.runtime>4.4.0-20220622</app.runtime>
 		<mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
-		<release.version></release.version>
 	</properties>
     <scm>
 		<connection>scm:git:https://github.com/tarantsovakseniya/mule-maven-version-plugins.git</connection>
@@ -50,44 +49,42 @@
 			    <artifactId>build-helper-maven-plugin</artifactId>
 			    <version>3.6.0</version>
 			    <executions>
-					<execution>
-						<id>parse-version</id>
-						<goals>
-							<goal>parse-version</goal>
-						</goals>
-					</execution>
+			    	<execution>
+			    		<id>released-version</id>
+			    		<goals>
+			    			<goal>released-version</goal>
+			    		</goals>
+			    	</execution>
+			    	<execution>
+			    		<id>parse-version</id>
+			    		<goals>
+			    			<goal>parse-version</goal>
+			    		</goals>
+			    	</execution>
 			    </executions>
 			</plugin>
-  			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.1</version>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<echo>Major: ${parsedVersion.majorVersion}</echo>
-								<echo>Minor: ${parsedVersion.minorVersion}</echo>
-								<echo>Incremental: ${parsedVersion.incrementalVersion}</echo>
-								<echo>Qualifier: ${parsedVersion.qualifier}</echo>
-								<echo>BuildNumber: ${parsedVersion.buildNumber}</echo>
-								<echo>Next major: ${parsedVersion.nextMajorVersion}</echo>
-								<echo>Next minor: ${parsedVersion.nextMinorVersion}</echo>
-								<echo>Next incremental: ${parsedVersion.nextIncrementalVersion}</echo>
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-				<version>2.8.1</version>
-			</plugin>
+  		<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+                <execution>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                    <configuration>
+                        <tasks>
+                            <echo>Major: ${parsedVersion.majorVersion}</echo>
+                            <echo>Minor: ${parsedVersion.minorVersion}</echo>
+                            <echo>Incremental: ${parsedVersion.incrementalVersion}</echo>
+                            <echo>Qualifier: ${parsedVersion.qualifier}</echo>
+                            <echo>BuildNumber: ${parsedVersion.buildNumber}</echo>
+                        </tasks>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 		</plugins>
 	</build>
 
